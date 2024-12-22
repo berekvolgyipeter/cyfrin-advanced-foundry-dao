@@ -13,6 +13,19 @@ import {GovernorVotesQuorumFraction} from
 import {IVotes} from "@openzeppelin/contracts/governance/utils/IVotes.sol";
 import {TimelockController} from "@openzeppelin/contracts/governance/TimelockController.sol";
 
+/**
+ * @dev inheritances:
+ *     Governor: Core of the governance system, designed to be extended through various modules.
+ *     GovernorSettings: Extension of {Governor} for settings updatable through governance.
+ *     GovernorCountingSimple: Extension of {Governor} for simple, 3 options, vote counting.
+ *     GovernorVotes: Extension of {Governor} for voting weight extraction from an {ERC20Votes} token,
+ *         or since v4.5 an {ERC721Votes} token.
+ *     GovernorVotesQuorumFraction: Extension of {Governor} for voting weight extraction from
+ *         an {ERC20Votes} token and a quorum expressed as a fraction of the total supply.
+ *     GovernorTimelockControl: Extension of {Governor} that binds the execution process
+ *         to an instance of {TimelockController}. This adds a delay, enforced by the {TimelockController}
+ *         to all successful proposal (in addition to the voting duration).
+ */
 contract MyGovernor is
     Governor,
     GovernorSettings,

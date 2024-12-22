@@ -8,6 +8,12 @@ import {ERC20Permit} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20P
 import {ERC20Votes} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol";
 import {Nonces} from "@openzeppelin/contracts/utils/Nonces.sol";
 
+/**
+ * @dev inheritances:
+ *     ERC20: Provides standard ERC20 token functionality.
+ *     ERC20Permit: Implementation of the ERC-20 Permit extension allowing approvals to be made via signatures.
+ *     ERC20Votes: Extension of ERC-20 to support Compound-like voting and delegation.
+ */
 contract GovToken is ERC20, ERC20Permit, ERC20Votes {
     constructor() ERC20("GovToken", "GTK") ERC20Permit("GovToken") {}
 
