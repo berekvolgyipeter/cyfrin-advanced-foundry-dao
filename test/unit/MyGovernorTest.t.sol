@@ -39,11 +39,10 @@ contract MyGovernorTest is Test {
 
         timelock = new TimeLock(MIN_DELAY, proposers, executors);
         governor = new MyGovernor(token, timelock);
-        bytes32 proposerRole = timelock.PROPOSER_ROLE();
-        bytes32 executorRole = timelock.EXECUTOR_ROLE();
 
-        timelock.grantRole(proposerRole, address(governor));
-        timelock.grantRole(executorRole, address(0));
+        timelock.grantRole(timelock.PROPOSER_ROLE(), address(governor));
+        timelock.grantRole(timelock.EXECUTOR_ROLE(), address(0)); // allow anyone to execute queued transactions
+        timelock.revokeRole(timelock.DEFAULT_ADMIN_ROLE(), address(timelock));
 
         box = new Box();
         box.transferOwnership(address(timelock));
